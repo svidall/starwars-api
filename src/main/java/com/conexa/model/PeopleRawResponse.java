@@ -1,6 +1,6 @@
 package com.conexa.model;
 
-import com.conexa.util.RawResultPeopleDeserializer;
+import com.conexa.helper.PeopleRawResultDeserializer;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -8,10 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RawPeopleResponse {
+public class PeopleRawResponse {
     private String message;
     @JsonProperty("total_records")
     private Integer totalRecords;
@@ -20,6 +22,6 @@ public class RawPeopleResponse {
     private String previous;
     private String next;
     @JsonAlias({"results", "result"})
-    @JsonDeserialize(using = RawResultPeopleDeserializer.class)
-    private RawResultPeople[] results;
+    @JsonDeserialize(using = PeopleRawResultDeserializer.class)
+    private List<PeopleRawResult> results;
 }

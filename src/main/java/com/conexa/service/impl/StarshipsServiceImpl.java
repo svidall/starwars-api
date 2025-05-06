@@ -1,9 +1,11 @@
 package com.conexa.service.impl;
 
 import com.conexa.converter.PeopleConverter;
-import com.conexa.model.PeopleResponse;
+import com.conexa.converter.StarshipsConverter;
 import com.conexa.model.PeopleRawResponse;
-import com.conexa.service.PeopleService;
+import com.conexa.model.StarshipsRawResponse;
+import com.conexa.model.StarshipsResponse;
+import com.conexa.service.StarshipsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,38 +18,37 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class PeopleServiceImpl implements PeopleService {
+public class StarshipsServiceImpl implements StarshipsService {
     private final RestTemplate restTemplate = new RestTemplate();
-    private final PeopleConverter peopleConverter;
+    private final StarshipsConverter starshipsConverter;
     @Value("${swapi.baseurl}")
     private String baseUrl;
-    private final String PEOPLE_URI = "/people";
+    private final String STARSHIPS_URI = "/starships";
 
     @Override
-    public PeopleResponse getPeople(int page, int limit, String name) {
-        String url = UriComponentsBuilder.fromUriString(baseUrl).path(PEOPLE_URI)
+    public StarshipsResponse getStarships(int page, int limit, String name) {
+        String url = UriComponentsBuilder.fromUriString(baseUrl).path(STARSHIPS_URI)
                 .queryParam("expanded", "true")
                 .queryParam("page", page)
                 .queryParam("limit", limit)
                 .queryParam("name", name)
                 .toUriString();
-
-        try {
-            var rawResponse = restTemplate.getForObject(url, PeopleRawResponse.class);
-            return peopleConverter.convert(Objects.requireNonNull(rawResponse));
-        } catch (HttpClientErrorException.NotFound e) {
-            return null;
-        } catch (RestClientException e) {
-            throw new RuntimeException("Error al consumir la API de SWAPI", e);
-        }
+        return getStarshipsResponse(url);
     }
 
     @Override
-    public PeopleResponse getPeopleById(int id) {
-        String url = UriComponentsBuilder.fromUriString(baseUrl).path(PEOPLE_URI + "/" + id).toUriString();
+    public StarshipsResponse getStarshipById(int id) {
+        String url = UriComponentsBuilder.fromUriString(baseUrl).path(STARSHIPS_URI + "/" + id).toUriString();
+        return getStarshipsResponse(url);
+    }
+
+    private StarshipsResponse getStarshipsResponse(String url) {
         try {
-            var rawResponse = restTemplate.getForObject(url, PeopleRawResponse.class);
-            return peopleConverter.convert(Objects.requireNonNull(rawResponse));
+            var rawResponse = restTemplate.getForObject(url, StarshipsRawResponse.class);
+            if (Objects.isNull(rawResponse)) {
+                return null;
+            }
+            return starshipsConverter.convert(rawResponse);
         } catch (HttpClientErrorException.NotFound e) {
             return null;
         } catch (RestClientException e) {

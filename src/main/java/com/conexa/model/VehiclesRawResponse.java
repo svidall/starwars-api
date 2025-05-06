@@ -1,20 +1,20 @@
 package com.conexa.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Pagination {
+public class VehiclesRawResponse {
+    private String message;
     @JsonProperty("total_records")
     private Integer totalRecords;
     @JsonProperty("total_pages")
     private Integer totalPages;
     private String previous;
     private String next;
+    private List<VehiclesRawResult> results;
 }

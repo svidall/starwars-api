@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PeopleResponse {
+public class VehiclesResponse {
     private Pagination pagination;
-    private List<PeopleResult> data;
+    private List<VehiclesResult> data;
 }

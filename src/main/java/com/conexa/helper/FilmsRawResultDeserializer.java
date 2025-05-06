@@ -1,7 +1,7 @@
-package com.conexa.util;
+package com.conexa.helper;
 
 
-import com.conexa.model.RawResultPeople;
+import com.conexa.model.FilmsRawResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -12,33 +12,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RawResultPeopleDeserializer extends StdDeserializer<RawResultPeople[]> {
+public class FilmsRawResultDeserializer extends StdDeserializer<List<FilmsRawResult>> {
 
-    public RawResultPeopleDeserializer() {
+    public FilmsRawResultDeserializer() {
         this(null);
     }
-
-    public RawResultPeopleDeserializer(Class<?> vc) {
+    public FilmsRawResultDeserializer(Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public RawResultPeople[] deserialize(JsonParser jp, DeserializationContext ctxt)
+    public List<FilmsRawResult> deserialize(JsonParser jp, DeserializationContext ctxt)
             throws IOException {
 
         ObjectCodec codec = jp.getCodec();
         JsonNode node = codec.readTree(jp);
 
-        List<RawResultPeople> results = new ArrayList<>();
+        List<FilmsRawResult> results = new ArrayList<>();
 
         if (node.isArray()) {
             for (JsonNode item : node) {
-                results.add(codec.treeToValue(item, RawResultPeople.class));
+                results.add(codec.treeToValue(item, FilmsRawResult.class));
             }
         } else if (node.isObject()) {
-            results.add(codec.treeToValue(node, RawResultPeople.class));
+            results.add(codec.treeToValue(node, FilmsRawResult.class));
         }
 
-        return results.toArray(new RawResultPeople[0]);
+        return results;
     }
 }

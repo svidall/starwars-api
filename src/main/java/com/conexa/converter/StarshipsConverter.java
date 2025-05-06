@@ -1,27 +1,23 @@
 package com.conexa.converter;
 
-import com.conexa.model.Pagination;
-import com.conexa.model.PeopleResponse;
-import com.conexa.model.PeopleRawResponse;
-import com.conexa.model.PeopleResult;
+import com.conexa.model.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class PeopleConverter {
-    public PeopleResponse convert(PeopleRawResponse raw) {
-        List<PeopleResult> converted = raw.getResults().stream()
+public class StarshipsConverter {
+    public StarshipsResponse convert(StarshipsRawResponse raw) {
+        List<StarshipsResult> converted = raw.getResults().stream()
                 .map(r -> {
-                    PeopleResult rp = new PeopleResult();
+                    StarshipsResult rp = new StarshipsResult();
                     rp.setId(r.getUid());
-                    rp.setPerson(r.getProperties());
+                    rp.setStarship(r.getProperties());
                     return rp;
                 })
                 .toList();
 
-        PeopleResponse response = new PeopleResponse();
+        StarshipsResponse response = new StarshipsResponse();
         Pagination pagination = new Pagination(raw.getTotalRecords(), raw.getTotalPages(), raw.getPrevious(), raw.getNext());
         response.setPagination(pagination);
         response.setData(converted);

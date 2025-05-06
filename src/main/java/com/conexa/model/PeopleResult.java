@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResultPeople {
-    private PropertiesPeople person;
+public class PeopleResult {
+    private PeopleProperties person;
     private String id;
 }

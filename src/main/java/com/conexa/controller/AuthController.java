@@ -38,4 +38,5 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al registrar el usuario: " + e.getMessage());
         }
     }
+    //TODO: implement refreshToken in the future
 }

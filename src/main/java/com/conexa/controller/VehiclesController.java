@@ -1,24 +1,27 @@
 package com.conexa.controller;
 
-import com.conexa.service.PeopleService;
+import com.conexa.service.StarshipsService;
+import com.conexa.service.VehiclesService;
+import com.conexa.service.impl.VehiclesServiceImpl;
 import com.conexa.util.PaginateUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URISyntaxException;
 import java.security.Principal;
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/people")
+@RequestMapping("/api/vehicles")
 @CrossOrigin("*")
 @RequiredArgsConstructor
-public class PeopleController {
-    private final PeopleService peopleService;
+public class VehiclesController {
+
+    private final VehiclesService vehiclesService;
 
     @GetMapping
-    public ResponseEntity<?> getPeople(
+    public ResponseEntity<?> getVehicles(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int limit,
             @RequestParam(defaultValue = "") String name,
@@ -26,8 +29,8 @@ public class PeopleController {
             Principal principal
 
     ) {
-        var response = peopleService.getPeople(page, limit, name);
-        if (response == null) {
+        var response = vehiclesService.getVehicles(page, limit, name);
+        if (Objects.isNull(response)) {
             return ResponseEntity.notFound().build();
         }
         int totalRecords = response.getPagination().getTotalRecords();
@@ -38,14 +41,13 @@ public class PeopleController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{personId}")
-    public ResponseEntity<?> getPerson(@PathVariable int personId) {
-        var response = peopleService.getPeopleById(personId);
-        if (response == null) {
+    @GetMapping("/{vehicleId}")
+    public ResponseEntity<?> getStarshipById(@PathVariable int vehicleId) {
+        var response = vehiclesService.getVehicleById(vehicleId);
+        if (Objects.isNull(response)) {
             return ResponseEntity.notFound().build();
         }
         response.setPagination(null);
         return ResponseEntity.ok(response);
     }
-
 }

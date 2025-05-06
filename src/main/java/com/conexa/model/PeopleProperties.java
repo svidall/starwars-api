@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PropertiesPeople {
+public class PeopleProperties {
     private OffsetDateTime created;
     private OffsetDateTime edited;
     private String name;
