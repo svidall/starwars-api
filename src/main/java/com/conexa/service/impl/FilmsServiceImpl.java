@@ -2,7 +2,6 @@ package com.conexa.service.impl;
 
 import com.conexa.converter.FilmsConverter;
 import com.conexa.model.FilmsRawResponse;
-import com.conexa.model.FilmsRawResult;
 import com.conexa.model.FilmsResponse;
 import com.conexa.service.FilmsService;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +12,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

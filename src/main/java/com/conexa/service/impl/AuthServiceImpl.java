@@ -2,7 +2,6 @@ package com.conexa.service.impl;
 
 import com.conexa.entity.User;
 import com.conexa.repository.UserRepository;
-import com.conexa.security.JwtUtil;
 import com.conexa.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
     @Override

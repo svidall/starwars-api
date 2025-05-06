@@ -1,8 +1,6 @@
 package com.conexa.service.impl;
 
-import com.conexa.converter.PeopleConverter;
 import com.conexa.converter.StarshipsConverter;
-import com.conexa.model.PeopleRawResponse;
 import com.conexa.model.StarshipsRawResponse;
 import com.conexa.model.StarshipsResponse;
 import com.conexa.service.StarshipsService;

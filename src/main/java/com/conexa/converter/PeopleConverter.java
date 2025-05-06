@@ -1,12 +1,11 @@
 package com.conexa.converter;
 
 import com.conexa.model.Pagination;
-import com.conexa.model.PeopleResponse;
 import com.conexa.model.PeopleRawResponse;
+import com.conexa.model.PeopleResponse;
 import com.conexa.model.PeopleResult;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Component

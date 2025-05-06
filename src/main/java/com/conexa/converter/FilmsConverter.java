@@ -1,9 +1,11 @@
 package com.conexa.converter;
 
-import com.conexa.model.*;
+import com.conexa.model.FilmsRawResponse;
+import com.conexa.model.FilmsResponse;
+import com.conexa.model.FilmsResult;
+import com.conexa.model.Pagination;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Component

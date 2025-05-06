@@ -1,8 +1,8 @@
 package com.conexa.service.impl;
 
 import com.conexa.converter.PeopleConverter;
-import com.conexa.model.PeopleResponse;
 import com.conexa.model.PeopleRawResponse;
+import com.conexa.model.PeopleResponse;
 import com.conexa.service.PeopleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

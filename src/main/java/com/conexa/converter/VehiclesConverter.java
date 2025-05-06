@@ -1,6 +1,9 @@
 package com.conexa.converter;
 
-import com.conexa.model.*;
+import com.conexa.model.Pagination;
+import com.conexa.model.VehiclesRawResponse;
+import com.conexa.model.VehiclesResponse;
+import com.conexa.model.VehiclesResult;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

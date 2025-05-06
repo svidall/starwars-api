@@ -1,7 +1,6 @@
 package com.conexa.helper;
 
 
-import com.conexa.model.FilmsRawResult;
 import com.conexa.model.StarshipsRawResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;

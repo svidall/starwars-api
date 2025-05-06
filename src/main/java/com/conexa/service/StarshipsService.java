@@ -1,6 +1,5 @@
 package com.conexa.service;
 
-import com.conexa.model.FilmsResponse;
 import com.conexa.model.StarshipsResponse;
 
 public interface StarshipsService {

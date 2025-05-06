@@ -1,12 +1,8 @@
 package com.conexa.service.impl;
 
-import com.conexa.converter.StarshipsConverter;
 import com.conexa.converter.VehiclesConverter;
-import com.conexa.model.StarshipsRawResponse;
-import com.conexa.model.StarshipsResponse;
 import com.conexa.model.VehiclesRawResponse;
 import com.conexa.model.VehiclesResponse;
-import com.conexa.service.StarshipsService;
 import com.conexa.service.VehiclesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,11 +21,11 @@ public class VehiclesServiceImpl implements VehiclesService {
     private final VehiclesConverter vehiclesConverter;
     @Value("${swapi.baseurl}")
     private String baseUrl;
-    private final String STARSHIPS_URI = "/starships";
+    private final String VEHICLES_URI = "/vehicles";
 
     @Override
     public VehiclesResponse getVehicles(int page, int limit, String name) {
-        String url = UriComponentsBuilder.fromUriString(baseUrl).path(STARSHIPS_URI)
+        String url = UriComponentsBuilder.fromUriString(baseUrl).path(VEHICLES_URI)
                 .queryParam("expanded", "true")
                 .queryParam("page", page)
                 .queryParam("limit", limit)
@@ -40,7 +36,7 @@ public class VehiclesServiceImpl implements VehiclesService {
 
     @Override
     public VehiclesResponse getVehicleById(int id) {
-        String url = UriComponentsBuilder.fromUriString(baseUrl).path(STARSHIPS_URI + "/" + id).toUriString();
+        String url = UriComponentsBuilder.fromUriString(baseUrl).path(VEHICLES_URI + "/" + id).toUriString();
         return getStarshipsResponse(url);
     }
 
