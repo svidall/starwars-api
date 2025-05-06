@@ -4,6 +4,7 @@ Este proyecto es una API desarrollada con Spring Boot para gestionar informació
 
 ## Sistema de seguridad
 Se utiliza para este caso practico "h2" como bd y jwt para el register y login seguro en la app.
+Al hacer login se debe copiar el token generada en incluir como Authorization Bearer a la hora de hacer peticiones a los endpoints protegidos.
 
 ## Documentación de la API
 
